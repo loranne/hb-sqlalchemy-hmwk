@@ -1,0 +1,25 @@
+Find Cynthia:
+    emp_cd = Employee.query.filter_by(name='Cynthia Dueltgen').one()
+
+What dept is she in?
+    emp_cd.dept
+
+What's her dept. phone number?
+    emp_cd.dept.phone
+
+All emps whose dept. we don't know:
+    unknown_dept = db.session.query(Employee).filter(dept_code == None).all()
+
+Tuples of name of everyone whose favorite color is orange:
+    orange = db.session.query(Employee).filter(Employee.fav_color='orange').all()
+    ^^ Syntax Error: keyword can't be an expression
+
+    Had to separate into 2 lines:
+    all_emps = db.session.query(Employee.name)
+    orange = all_emps.filter(Employee.fav_color == 'orange').all()
+
+All admin employees:
+    all_emps = db.session.query(Employee.name)
+    admin_emps = all_emps.filter(Employee.dept_code == 'admin').all()
+
+
